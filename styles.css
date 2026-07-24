@@ -1,0 +1,33 @@
+/* Minimalista — paleta beige + terracota */
+:root{
+  --bg: #f5f1eb; /* beige claro */
+  --card: #fff;
+  --text: #2b2b2b;
+  --muted: #7a7268;
+  --accent: #c35d45; /* terracota */
+  --accent-dark: #a9452f;
+  --maxw: 920px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
+.container{max-width:var(--maxw);margin:0 auto;padding:1rem}
+.site-header{background:transparent;padding:2.25rem 0;text-align:center}
+.site-header h1{margin:0;font-weight:600;letter-spacing:0.02em}
+.subtitle{color:var(--muted);margin-top:.3rem}
+.hero{padding:1.25rem 0;text-align:center}
+.lead{color:var(--muted);margin-top:.25rem}
+.actions{margin-top:1rem;display:flex;gap:.5rem;justify-content:center}
+.btn{background:var(--accent);color:white;padding:.6rem 1rem;border-radius:8px;border:none;text-decoration:none;cursor:pointer;font-weight:600}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(0,0,0,0.06)}
+.card{background:var(--card);margin:1rem 0;padding:1.15rem;border-radius:10px;box-shadow:0 1px 0 rgba(0,0,0,0.04)}
+h3{margin-top:0}
+ul{padding-left:1.15rem}
+.muted{color:var(--muted)}
+.site-footer{padding:1.5rem 0;text-align:center;color:var(--muted)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.6rem;margin-top:.6rem}
+.gallery img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+code{background:#f3efe9;padding:.12rem .4rem;border-radius:6px;font-size:.95em}
+@media(min-width:720px){
+  .hero{padding:2.5rem 0}
+}
