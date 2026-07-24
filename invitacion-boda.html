@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación de Boda</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;1,400&family=Work+Sans:wght@300;400;500;600&display=swap');
+
+  :root{
+    --ivory:#F7F5F1;
+    --ink:#1B1B18;
+    --gold:#A9895E;
+    --gold-soft:#D9C7A8;
+    --stone:#8B8880;
+    --line:#E4E0D8;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+
+  .eyebrow{
+    font-family:'Work Sans', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:500;
+  }
+
+  h1, h2, .display{
+    font-family:'Fraunces', serif;
+    font-weight:400;
+    letter-spacing:0.01em;
+  }
+
+  .section{
+    padding:110px 24px;
+    max-width:720px;
+    margin:0 auto;
+    text-align:center;
+  }
+
+  .fade{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity 1s ease, transform 1s ease;
+  }
+  .fade.in{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* HERO */
+  .hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px 24px;
+    position:relative;
+  }
+
+  .monogram{
+    width:120px;
+    height:120px;
+    margin-bottom:36px;
+  }
+
+  .hero .eyebrow{ margin-bottom:22px; }
+
+  .hero h1{
+    font-size:clamp(2.6rem, 8vw, 4.6rem);
+    line-height:1.08;
+  }
+
+  .hero .amp{
+    display:block;
+    font-style:italic;
+    color:var(--gold);
+    font-size:0.5em;
+    margin:8px 0;
+  }
+
+  .hero .subdate{
+    margin-top:28px;
+    font-size:0.95rem;
+    letter-spacing:0.08em;
+    color:var(--stone);
+  }
+
+  .scroll-hint{
+    position:absolute;
+    bottom:36px;
+    width:1px;
+    height:52px;
+    background:var(--line);
+  }
+  .scroll-hint::after{
+    content:'';
+    position:absolute;
+    left:-2.5px; top:0;
+    width:6px; height:6px;
+    border-radius:50%;
+    background:var(--gold);
+    animation:drip 2.2s ease-in-out infinite;
+  }
+  @keyframes drip{
+    0%{ top:0; opacity:0; }
+    20%{ opacity:1; }
+    90%{ opacity:1; }
+    100%{ top:44px; opacity:0; }
+  }
+
+  .divider{
+    width:44px;
+    height:1px;
+    background:var(--gold-soft);
+    margin:32px auto;
+  }
+
+  /* DETALLES */
+  .details{
+    display:grid;
+    gap:44px;
+    margin-top:50px;
+  }
+  .detail-item .label{
+    font-size:0.7rem;
+    letter-spacing:0.24em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  .detail-item .value{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+  }
+  .detail-item .sub{
+    color:var(--stone);
+    font-size:0.9rem;
+    margin-top:4px;
+  }
+
+  /* COUNTDOWN */
+  .countdown{
+    display:flex;
+    justify-content:center;
+    gap:clamp(14px, 4vw, 40px);
+    margin-top:40px;
+    flex-wrap:wrap;
+  }
+  .count-box{
+    min-width:70px;
+  }
+  .count-num{
+    font-family:'Fraunces', serif;
+    font-size:clamp(2rem, 6vw, 3rem);
+    color:var(--ink);
+  }
+  .count-label{
+    font-size:0.68rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--stone);
+    margin-top:6px;
+  }
+
+  /* MAPA */
+  .map-frame{
+    margin-top:40px;
+    width:100%;
+    height:320px;
+    border:1px solid var(--line);
+    filter:grayscale(0.4) contrast(1.05);
+  }
+
+  /* RSVP */
+  .rsvp-buttons{
+    margin-top:44px;
+    display:flex;
+    gap:16px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'Work Sans', sans-serif;
+    font-size:0.85rem;
+    letter-spacing:0.06em;
+    text-decoration:none;
+    padding:15px 34px;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    transition:all 0.35s ease;
+    display:inline-block;
+  }
+  .btn:hover{
+    background:var(--ink);
+    color:var(--ivory);
+  }
+  .btn.primary{
+    background:var(--ink);
+    color:var(--ivory);
+  }
+  .btn.primary:hover{
+    background:var(--gold);
+    border-color:var(--gold);
+  }
+
+  footer{
+    text-align:center;
+    padding:60px 24px 50px;
+    color:var(--stone);
+    font-size:0.8rem;
+    letter-spacing:0.05em;
+  }
+  footer .fname{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--ink);
+    font-size:1.1rem;
+    display:block;
+    margin-bottom:6px;
+  }
+
+  @media (min-width:640px){
+    .details{ grid-template-columns:1fr 1fr; }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .fade{ transition:none; opacity:1; transform:none; }
+    .scroll-hint::after{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================================================= -->
+<!--  ZONA DE EDICIÓN — cambia solo estos valores              -->
+<!--  No necesitas tocar nada más abajo de esta sección        -->
+<!-- ======================================================= -->
+<script>
+  const CONFIG = {
+    novia: "Nombre Novia",
+    novio: "Nombre Novio",
+    iniciales: "N & N",                 // usadas en el monograma
+    fechaTexto: "12 de Diciembre, 2026", // como se muestra en el texto
+    fechaISO: "2026-12-12T18:00:00",     // usada por la cuenta regresiva (AAAA-MM-DDTHH:MM:SS)
+    horaTexto: "6:00 PM",
+    lugarNombre: "Hacienda Los Encinos",
+    lugarDireccion: "Av. Siempre Viva 123, Monterrey, N.L.",
+    mapaQuery: "Hacienda Los Encinos, Monterrey", // texto que se busca en el mapa
+    whatsappNumero: "5218100000000",     // con código de país, sin + ni espacios
+    email: "boda@ejemplo.com"
+  };
+</script>
+<!-- ======================================================= -->
+
+<section class="hero">
+  <svg class="monogram fade" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="60" cy="60" r="58" stroke="#D9C7A8" stroke-width="1"/>
+    <text id="mono-text" x="60" y="70" text-anchor="middle" font-family="Fraunces, serif" font-size="30" font-style="italic" fill="#1B1B18">N&N</text>
+  </svg>
+  <p class="eyebrow fade">Nos casamos</p>
+  <h1 class="fade">
+    <span id="hero-novia">Nombre Novia</span>
+    <span class="amp">&amp;</span>
+    <span id="hero-novio">Nombre Novio</span>
+  </h1>
+  <p class="subdate fade" id="hero-fecha">12 de Diciembre, 2026 · 6:00 PM</p>
+  <div class="scroll-hint"></div>
+</section>
+
+<section class="section" id="detalles">
+  <p class="eyebrow fade">Detalles</p>
+  <div class="divider fade"></div>
+  <div class="details">
+    <div class="detail-item fade">
+      <p class="label">Fecha</p>
+      <p class="value" id="det-fecha">12 de Diciembre</p>
+      <p class="sub" id="det-anio">2026</p>
+    </div>
+    <div class="detail-item fade">
+      <p class="label">Hora</p>
+      <p class="value" id="det-hora">6:00 PM</p>
+      <p class="sub">Llega con tiempo</p>
+    </div>
+    <div class="detail-item fade">
+      <p class="label">Lugar</p>
+      <p class="value" id="det-lugar">Hacienda Los Encinos</p>
+      <p class="sub" id="det-direccion">Monterrey, N.L.</p>
+    </div>
+    <div class="detail-item fade">
+      <p class="label">Código</p>
+      <p class="value">Formal</p>
+      <p class="sub">Elegante</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cuenta-regresiva">
+  <p class="eyebrow fade">Cuenta regresiva</p>
+  <div class="divider fade"></div>
+  <div class="countdown fade">
+    <div class="count-box">
+      <div class="count-num" id="cd-dias">00</div>
+      <div class="count-label">Días</div>
+    </div>
+    <div class="count-box">
+      <div class="count-num" id="cd-horas">00</div>
+      <div class="count-label">Horas</div>
+    </div>
+    <div class="count-box">
+      <div class="count-num" id="cd-min">00</div>
+      <div class="count-label">Min</div>
+    </div>
+    <div class="count-box">
+      <div class="count-num" id="cd-seg">00</div>
+      <div class="count-label">Seg</div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="ubicacion">
+  <p class="eyebrow fade">Ubicación</p>
+  <div class="divider fade"></div>
+  <p class="fade" id="ubi-texto" style="color:var(--stone); font-size:0.95rem;">Av. Siempre Viva 123, Monterrey, N.L.</p>
+  <iframe class="map-frame fade" id="mapa" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+
+<section class="section" id="rsvp">
+  <p class="eyebrow fade">Confirmación</p>
+  <div class="divider fade"></div>
+  <p class="fade" style="color:var(--stone); font-size:0.95rem; max-width:420px; margin:0 auto;">
+    Tu presencia es el mejor regalo. Por favor confirma tu asistencia antes del 1 de Noviembre.
+  </p>
+  <div class="rsvp-buttons fade">
+    <a class="btn primary" id="btn-whatsapp" href="#" target="_blank">Confirmar por WhatsApp</a>
+    <a class="btn" id="btn-email" href="#">Confirmar por correo</a>
+  </div>
+</section>
+
+<footer>
+  <span class="fname" id="foot-nombres">Nombre Novia &amp; Nombre Novio</span>
+  Los esperamos con mucho cariño
+</footer>
+
+<script>
+  // --- Inyectar datos del CONFIG en la página ---
+  document.getElementById('mono-text').textContent = CONFIG.iniciales;
+  document.getElementById('hero-novia').textContent = CONFIG.novia;
+  document.getElementById('hero-novio').textContent = CONFIG.novio;
+  document.getElementById('hero-fecha').textContent = `${CONFIG.fechaTexto} · ${CONFIG.horaTexto}`;
+  document.getElementById('det-fecha').textContent = CONFIG.fechaTexto.split(',')[0];
+  document.getElementById('det-anio').textContent = CONFIG.fechaTexto.split(',')[1]?.trim() || '';
+  document.getElementById('det-hora').textContent = CONFIG.horaTexto;
+  document.getElementById('det-lugar').textContent = CONFIG.lugarNombre;
+  document.getElementById('det-direccion').textContent = CONFIG.lugarDireccion;
+  document.getElementById('ubi-texto').textContent = CONFIG.lugarDireccion;
+  document.getElementById('foot-nombres').textContent = `${CONFIG.novia} & ${CONFIG.novio}`;
+  document.title = `Boda de ${CONFIG.novia} y ${CONFIG.novio}`;
+
+  document.getElementById('mapa').src =
+    `https://www.google.com/maps?q=${encodeURIComponent(CONFIG.mapaQuery)}&output=embed`;
+
+  const mensajeWA = encodeURIComponent(
+    `Hola, confirmo mi asistencia a la boda de ${CONFIG.novia} y ${CONFIG.novio}.`
+  );
+  document.getElementById('btn-whatsapp').href =
+    `https://wa.me/${CONFIG.whatsappNumero}?text=${mensajeWA}`;
+
+  document.getElementById('btn-email').href =
+    `mailto:${CONFIG.email}?subject=${encodeURIComponent('Confirmación de asistencia')}&body=${mensajeWA}`;
+
+  // --- Cuenta regresiva ---
+  const targetDate = new Date(CONFIG.fechaISO).getTime();
+  function tickCountdown(){
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+    if(diff <= 0){
+      document.getElementById('cd-dias').textContent = '00';
+      document.getElementById('cd-horas').textContent = '00';
+      document.getElementById('cd-min').textContent = '00';
+      document.getElementById('cd-seg').textContent = '00';
+      return;
+    }
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const s = Math.floor((diff % (1000*60)) / 1000);
+    document.getElementById('cd-dias').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-horas').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-seg').textContent = String(s).padStart(2,'0');
+  }
+  tickCountdown();
+  setInterval(tickCountdown, 1000);
+
+  // --- Animación de aparición al hacer scroll ---
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) entry.target.classList.add('in');
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
